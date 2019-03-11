@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';  
+import { UserInterface } from 'src/app/models/user-interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
@@ -12,7 +13,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private location: Location) { }
-  private user: {
+  private user: UserInterface = {
     name: '',
     email: '',
     password: ''
