@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/operators";
 import { isNullOrUndefined } from "util";
+import { UserInterface } from '../models/user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ import { isNullOrUndefined } from "util";
 export class AuthService {
 
   constructor(private htttp: HttpClient) {}
-
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   });
@@ -18,7 +18,7 @@ export class AuthService {
   registerUser(name: string, email: string, password: string) {
     const url_api = "http://localhost:8080/springapp/usuarios";
     return this.htttp
-      .post(
+      .post<UserInterface>(
         url_api,
         {
           name: name,
@@ -33,7 +33,7 @@ export class AuthService {
   loginuser(email: string, password: string): Observable<any> {
     const url_api = "http://localhost:8080/springapp/autenticacion";
     return this.htttp
-      .post(
+      .post<UserInterface>(
         url_api,
         { email, password },
         { headers: this.headers }
@@ -41,7 +41,7 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  setUser(user): void {
+  setUser(user: UserInterface): void {
     let user_string = JSON.stringify(user);
     localStorage.setItem("currentUser", user_string);
   }
@@ -54,10 +54,10 @@ export class AuthService {
     return localStorage.getItem("accessToken");
   }
 
-  getCurrentUser() {
+  getCurrentUser(): UserInterface {
     let user_string = localStorage.getItem("currentUser");
     if (!isNullOrUndefined(user_string)) {
-      let user = JSON.parse(user_string);
+      let user: UserInterface = JSON.parse(user_string);
       return user;
     } else {
       return null;
@@ -69,7 +69,7 @@ export class AuthService {
     const url_api = `http://localhost:8080/springapp/logout?access_token=${accessToken}`;
     localStorage.removeItem("accessToken");
     localStorage.removeItem("currentUser");
-    return this.htttp.post(url_api, { headers: this.headers });
+    return this.htttp.post<UserInterface>(url_api, { headers: this.headers });
   }
 
 }
