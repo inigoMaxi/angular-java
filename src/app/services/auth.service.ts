@@ -21,9 +21,8 @@ export class AuthService {
       .post<UserInterface>(
         url_api,
         {
-          name: name,
-          email: email,
-          password: password
+          nombre: name,
+          contraseña: password
         },
         { headers: this.headers }
       )
