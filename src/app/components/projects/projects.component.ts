@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataApiService } from 'src/app/services/data-api.service';
+import { ProjectInterface } from 'src/app/models/project-interface';
 
 @Component({
   selector: 'app-projects',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataApiService: DataApiService) { }
+  private projects: ProjectInterface;
+  pageActual: number = 1;
+  public myCounter: number = 0;
   ngOnInit() {
+    this.getListProject();
   }
 
+  getListProject(): void {
+    this.dataApiService
+      .getAllProjects()
+      .subscribe((projects: ProjectInterface) => (this.projects = projects));
+  }
 }

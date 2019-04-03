@@ -16,7 +16,7 @@ export class DataApiService {
   });
 
   getAllProjects (){
-    const url_api = 'http://localhost:8080/springapp/projects';
+    const url_api = 'http://localhost:8080/springapp/proyectos';
     return this.http.get(url_api);
   }
 }

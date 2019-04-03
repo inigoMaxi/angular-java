@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
         .loginuser(this.user.name, this.user.password)
         .subscribe(
         data => {
-          this.authService.setUser(data.user);
           const token = data;
           this.authService.setToken(token);
           this.router.navigate(['/projects']);

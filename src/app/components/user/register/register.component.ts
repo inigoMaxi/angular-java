@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private location: Location) { }
   private user: UserInterface = {
     name: '',
-    email: '',
     password: ''
   };
   public isError = false;
@@ -25,7 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(): void {
-    this.authService.registerUser(this.user.name, this.user.email, this.user.password)
+    this.authService.registerUser(this.user.name, this.user.password)
     .subscribe(user => {
       this.router.navigate(["/user/login"]);
     })

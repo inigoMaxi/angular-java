@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { HeroComponent } from './components/hero/hero.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
@@ -24,7 +23,6 @@ import { DataApiService } from './services/data-api.service';
     HomeComponent,
     NavbarComponent,
     ProjectsComponent,
-    HeroComponent,
     LoginComponent,
     RegisterComponent,
     Page404Component
