@@ -29,12 +29,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  loginuser(email: string, password: string): Observable<any> {
+  loginuser(nombre: string, contraseña: string): Observable<any> {
     const url_api = "http://localhost:8080/springapp/autenticacion";
     return this.htttp
       .post<UserInterface>(
         url_api,
-        { email, password },
+        { nombre, contraseña },
         { headers: this.headers }
       )
       .pipe(map(data => data));

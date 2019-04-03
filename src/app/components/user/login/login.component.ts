@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private location: Location) { }
   private user: UserInterface = {
-    email: '',
+    name: '',
     password: ''
   };
   public isError = false;
@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
   
   onLogin(form: NgForm) {
     return this.authService
-        .loginuser(this.user.email, this.user.password)
+        .loginuser(this.user.name, this.user.password)
         .subscribe(
         data => {
           this.authService.setUser(data.user);
-          const token = data.id;
+          const token = data;
           this.authService.setToken(token);
           this.router.navigate(['/projects']);
         },
