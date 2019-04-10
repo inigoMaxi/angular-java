@@ -9,12 +9,14 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 
 import { HttpClientModule } from '@angular/common/http/';
 import { FormsModule } from '@angular/forms';
  
 // services
 import { DataApiService } from './services/data-api.service';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { DataApiService } from './services/data-api.service';
     ProjectsComponent,
     LoginComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
+    MyProjectsComponent
   ],
   imports: [
     BrowserModule,

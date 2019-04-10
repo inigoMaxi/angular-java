@@ -11,8 +11,6 @@ export class ProjectsComponent implements OnInit {
 
   constructor(private dataApiService: DataApiService) { }
   private projects: ProjectInterface;
-  pageActual: number = 1;
-  public myCounter: number = 0;
   ngOnInit() {
     this.getListProject();
   }

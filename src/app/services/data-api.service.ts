@@ -19,4 +19,9 @@ export class DataApiService {
     const url_api = 'http://localhost:8080/springapp/proyectos';
     return this.http.get(url_api);
   }
+
+  getMyProjects (id: string){
+    const url_api = 'http://localhost:8080/springapp/usuarios/'+id;
+    return this.http.get(url_api);
+  }
 }

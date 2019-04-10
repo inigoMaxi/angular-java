@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private htttp: HttpClient, private router: Router) {}
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
@@ -50,7 +49,16 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("currentUser");
     this.router.navigate(['/user/login']);
+  }
+
+  setUserId(id: string) {
+    localStorage.setItem("currentUser", id);
+  }
+
+  getUserId() {
+    return localStorage.getItem("currentUser");
   }
 
 }

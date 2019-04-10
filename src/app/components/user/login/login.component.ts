@@ -28,9 +28,11 @@ export class LoginComponent implements OnInit {
       return this.authService
         .loginuser(this.user.name, this.user.password)
         .subscribe(
-          data => {
-            const token = data;
+          data => {            
+            const token = data.token;
+            const id = data.id            
             this.authService.setToken(token);
+            this.authService.setUserId(id);
             location.assign('/projects');
           },
           error => console.log(error)
