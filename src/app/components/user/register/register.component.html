@@ -7,9 +7,6 @@
             <div class="card-body text-center">
               <form #formRegister="ngForm" (ngSubmit)="onRegister(formRegister)">
                 <h1 class="h3 mb-3 font-weight-normal">Registrarse</h1>
-                <div class="alert alert-danger" role="alert" *ngIf="isError">
-                  {{msgError}}
-                </div>
                 <div class="form-group">
                   <input type="text" #name="ngModel" name="name" class="form-control" placeholder="Usuario"
                     [(ngModel)]="user.name" required minlength="4" maxlength="15">
@@ -23,7 +20,8 @@
                     [(ngModel)]="user.password" required minlength="5" maxlength="10">
                 </div>
                 <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
-                  <div *ngIf="password.errors.required">Ingrese su contraseña</div>                  
+                  <div *ngIf="password.errors.required">Ingrese su contraseña</div>
+                  <div *ngIf="password.errors.minlength">Ingrese minimo 5 caracteres</div>                  
                 </div>
                 <div class="alert alert-danger" [hidden]="!ok">Ingrese sus datos</div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Registrarse</button>

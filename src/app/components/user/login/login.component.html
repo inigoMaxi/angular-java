@@ -7,9 +7,6 @@
             <div class="card-body text-center">
               <form #formLogin="ngForm" (ngSubmit)="onLogin(formLogin)">
                 <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-                <div class="alert alert-danger" role="alert" *ngIf="isError">
-                  {{msgError}}
-                </div>
                 <div class="form-group">
                   <input type="text" id="name" #name="ngModel" name="name" class="form-control" placeholder="Usuario" 
                   [(ngModel)]="user.name" required minlength="4" maxlength="15">
@@ -20,12 +17,14 @@
                 </div>
                 <div class="form-group">
                   <input type="password" id="password" #password="ngModel" name="password" class="form-control" placeholder="Contraseña" 
-                  [(ngModel)]="user.password" required>
+                  [(ngModel)]="user.password" required minlength="5" maxlength="10">
                 </div>
                 <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
                   <div *ngIf="password.errors.required">Ingrese su contraseña</div>
+                  <div *ngIf="password.errors.minlength">Ingrese minimo 5 caracteres</div>                  
                 </div>
                 <div class="alert alert-danger" [hidden]="!ok">Ingrese sus datos</div>
+                <div class="alert alert-danger" [hidden]="!error">Sus datos no están registrados</div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Iniciar Sesion</button>
                 <div class="form-group">
                   <a routerLink="/user/register" class="form-control login-user">¿Aun no se registró?</a>

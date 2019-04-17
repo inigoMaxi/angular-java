@@ -19,7 +19,8 @@ export class MyProjectsComponent implements OnInit {
   getListProject(): void {
     this.dataApiService
       .getMyProjects(this.authService.getUserId())
-      .subscribe((myProjects) => (console.log(myProjects)));
+      //.subscribe((myProjects) => (console.log(myProjects)));
+      .subscribe((myProjects: ProjectInterface) => (this.projects = myProjects));
   }
 
 }

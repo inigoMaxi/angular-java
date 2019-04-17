@@ -19,23 +19,28 @@ export class LoginComponent implements OnInit {
   public isError = false;
   public msgError = '';
   private ok: boolean = false;
+  private error: boolean = false;
   ngOnInit() { }
 
   onLogin(form: NgForm) {
     if ( !this.user.name || !this.user.password) {
       this.ok = true;
     } else {
+      this.ok = false;
       return this.authService
         .loginuser(this.user.name, this.user.password)
         .subscribe(
-          data => {            
+          data => {
+            this.error = false;            
             const token = data.token;
             const id = data.id            
             this.authService.setToken(token);
             this.authService.setUserId(id);
             location.assign('/projects');
           },
-          error => console.log(error)
+          error => {
+            this.error = true;
+          }
         );
     }
   }
